@@ -9,9 +9,23 @@ def load_session():
         if "movel" not in st.session_state and "fixa" not in st.session_state:
 
             # Ler e filtrar a planilha das vendas Móvel
-            st.session_state.movel = pd.read_excel(
+            movel = pd.read_excel(
                 st.session_state.planilha, index_col=[0], sheet_name="MOVEL"
-            )[["CONSULTOR", "STATUS", "R$ ACUMULADO", "TIPO VENDA"]]
+            )
+
+            movel.rename(columns={"QTD SERVIÇOS": "QUANTIDADE"}, inplace=True)
+            st.session_state.movel = movel[
+                [
+                    "CONSULTOR",
+                    "RAZÃO SOCIAL",
+                    "STATUS",
+                    "PLANO",
+                    "VALOR DO PLANO",
+                    "QUANTIDADE",
+                    "R$ ACUMULADO",
+                    "TIPO VENDA",
+                ]
+            ]
 
             # Ler, filtrar a tratar a planilha das vendas Fixa
             fixa = pd.read_excel(
@@ -24,7 +38,16 @@ def load_session():
             fixa.rename(columns={"TIPO DE VENDA": "TIPO VENDA"}, inplace=True)
 
             st.session_state.fixa = fixa[
-                ["CONSULTOR", "STATUS", "R$ ACUMULADO", "TIPO VENDA"]
+                [
+                    "CONSULTOR",
+                    "RAZÃO SOCIAL",
+                    "STATUS",
+                    "PLANO",
+                    "VALOR DO PLANO",
+                    "QUANTIDADE",
+                    "R$ ACUMULADO",
+                    "TIPO VENDA",
+                ]
             ]
 
         if (
@@ -40,4 +63,3 @@ def load_session():
             st.session_state.dataframe = dataframe[
                 dataframe["STATUS"].isin(CONCLUIDOS_MOVEL + CONCLUIDOS_FIXA)
             ]
-
