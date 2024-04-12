@@ -26,7 +26,7 @@ if "consultor" in st.session_state:
     )
 
     dfr = pd.DataFrame(remuneracoes)
-    st.dataframe(dfr)
+    st.dataframe(dfr, hide_index=True)
 
     multipliers_table = create_multipliers_table(DATA)
     signature = create_signature_paragraph(st.session_state.consultor)
