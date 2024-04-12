@@ -11,6 +11,9 @@ def handler_dataframe(consultor: str):
 
         dataframe = DATAFRAME[DATAFRAME["CONSULTOR"] == consultor]
 
+        dataframe = dataframe[dataframe["TIPO VENDA"].isin(st.session_state.tipo)]
+        dataframe = dataframe[dataframe["STATUS"].isin(st.session_state.status)]
+
         faixa = dataframe["R$ ACUMULADO"].sum()
         filtro = get_filtro(faixa)
 
