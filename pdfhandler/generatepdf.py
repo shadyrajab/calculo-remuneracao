@@ -1,7 +1,7 @@
 from reportlab.lib.pagesizes import letter
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Table
+from reportlab.platypus import SimpleDocTemplate 
 
 
-def build_pdf_file(multipliers: Table, statement: Paragraph, signature: Paragraph):
+def build_pdf_file(elements: list):
     pdf = SimpleDocTemplate("remunerações.pdf", pagesize=letter)
-    pdf.build([multipliers, statement, signature])
+    pdf.build(elements)
