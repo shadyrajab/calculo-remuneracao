@@ -18,3 +18,21 @@ def get_filtro(faixa):
         filtro = "FILTRO 6"
 
     return filtro
+
+
+def get_information_data(bonus: float, salario: float, ajuda: float, estorno: float):
+    total = salario + ajuda + bonus
+    return [
+        ["", "", "BÔNUS", "", ""],
+        ["", "", bonus, "", ""],
+        ["", "", "", "", ""],
+        ["", "", "SALÁRIO", "", ""],
+        ["", "", salario, "", ""],
+        ["", "", "Ajuda de Custo", "", ""],
+        ["", "", ajuda, "", ""],
+        ["", "", "", "", ""],
+        ["", "", "Estorno", "", ""],
+        ["", "", estorno, "", ""],
+        ["", "", "Valor a depositar", "", ""],
+        ["", "", total, "", ""],
+    ]
