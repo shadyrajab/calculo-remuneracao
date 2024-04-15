@@ -12,9 +12,8 @@ from pdfhandler.multipliers import create_multipliers_table
 from pdfhandler.signature import create_signature_paragraph
 from pdfhandler.statement import create_statement_paragraph
 from session.state import load_session
-from utils.functions import get_information_data
+from utils.functions import get_information_data, get_multipliers_data
 from utils.handler import handler_dataframe, handler_receita, handler_remuneracoes
-from utils.variables import DATA, DATA2
 
 st.set_page_config(layout="wide")
 
@@ -46,10 +45,12 @@ with c1:
             856.3,
             st.session_state.salario,
             st.session_state.ajuda,
-            st.session_state.estorno
+            st.session_state.estorno,
         )
 
-        multipliers_table = create_multipliers_table(DATA)
+        multipliers_data = get_multipliers_data(dfr)
+
+        multipliers_table = create_multipliers_table(multipliers_data)
         signature = create_signature_paragraph(st.session_state.consultor)
         statement = create_statement_paragraph()
         informations = create_informatons_table(information_data)
