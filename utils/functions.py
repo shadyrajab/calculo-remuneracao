@@ -24,15 +24,15 @@ def get_information_data(bonus: float, salario: float, ajuda: float, estorno: fl
     total = salario + ajuda + bonus
     return [
         ["", "", "BÔNUS", "", ""],
-        ["", "", bonus, "", ""],
+        ["", "", f"R$ {bonus}", "", ""],
         ["", "", "", "", ""],
         ["", "", "SALÁRIO", "", ""],
-        ["", "", salario, "", ""],
+        ["", "", f"R$ {salario}", "", ""],
         ["", "", "Ajuda de Custo", "", ""],
-        ["", "", ajuda, "", ""],
+        ["", "", f"R$ {ajuda}", "", ""],
         ["", "", "", "", ""],
         ["", "", "Estorno", "", ""],
-        ["", "", estorno, "", ""],
+        ["", "", f"R$ {estorno}", "", ""],
         ["", "", "Valor a depositar", "", ""],
-        ["", "", total, "", ""],
+        ["", "", f"R$ {total}", "", ""],
     ]
