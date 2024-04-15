@@ -1,8 +1,5 @@
-import pandas as pd
 from reportlab.lib import colors
-from reportlab.lib.pagesizes import letter
-from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Table, TableStyle
+from reportlab.platypus import Table, TableStyle
 
 
 def create_informatons_table(df: list):
