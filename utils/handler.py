@@ -1,3 +1,5 @@
+import re
+
 import pandas as pd
 import streamlit as st
 
@@ -5,14 +7,23 @@ from utils.functions import get_filtro
 from utils.variables import JA_CLIENTE, MIGRACAO_PRE_POS, NOVOS, PORTABILIDADE
 
 
+def format_value(value):
+    return re.sub(r"\D", "0", str(value))
+
+
 def handler_dataframe(consultor: str):
-    if "planilha" in st.session_state and "dataframe" in st.session_state:
+    if "dataframe" in st.session_state:
         DATAFRAME: pd.DataFrame = st.session_state.dataframe
 
         dataframe = DATAFRAME[DATAFRAME["CONSULTOR"] == consultor]
 
         dataframe = dataframe[dataframe["TIPO VENDA"].isin(st.session_state.tipo)]
         dataframe = dataframe[dataframe["STATUS"].isin(st.session_state.status)]
+
+        dataframe["R$ ACUMULADO"] = dataframe["R$ ACUMULADO"].apply(
+            lambda v: format_value(v)
+        )
+        dataframe["R$ ACUMULADO"] = dataframe["R$ ACUMULADO"].astype(float)
 
         faixa = dataframe["R$ ACUMULADO"].sum()
         filtro = get_filtro(faixa)
@@ -24,7 +35,7 @@ def handler_dataframe(consultor: str):
 
 
 def handler_receita(df: pd.DataFrame):
-    if "planilha" in st.session_state and "dataframe" in st.session_state:
+    if "dataframe" in st.session_state:
         st.session_state.receita_novos = df[df["TIPO VENDA"].isin(NOVOS)][
             "R$ ACUMULADO"
         ].sum()
@@ -46,7 +57,7 @@ def handler_receita(df: pd.DataFrame):
 
 
 def handler_remuneracoes(consultor: str, faixa: float, filtro: str):
-    if "planilha" in st.session_state and "dataframe" in st.session_state:
+    if "dataframe" in st.session_state:
         remuneracoes = [
             {
                 "CONSULTOR": consultor,

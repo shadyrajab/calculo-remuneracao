@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def filters():
-    if "planilha" in st.session_state and "dataframe" in st.session_state:
+    if "dataframe" in st.session_state:
         m1, m2, m3 = st.columns(3)
         st.session_state.consultor = m1.selectbox(
             "Selecionar Consultor",

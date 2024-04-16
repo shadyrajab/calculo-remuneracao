@@ -9,7 +9,7 @@ def download_pdf(path: str):
 
 
 def export_button():
-    if "planilha" in st.session_state and "dataframe" in st.session_state:
+    if "dataframe" in st.session_state:
         st.download_button(
             "Gerar PDF",
             download_pdf("remunerações.pdf"),

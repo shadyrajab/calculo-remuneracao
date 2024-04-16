@@ -1,3 +1,5 @@
+from os.path import isfile
+
 import pandas as pd
 import streamlit as st
 
@@ -5,13 +7,11 @@ from utils.variables import CONCLUIDOS_FIXA, CONCLUIDOS_MOVEL
 
 
 def load_session():
-    if "planilha" in st.session_state:
+    if isfile("dataframe/movel.xlsx") and isfile("dataframe/fixa.xlsx"):
         if "movel" not in st.session_state and "fixa" not in st.session_state:
 
             # Ler e filtrar a planilha das vendas Móvel
-            movel = pd.read_excel(
-                st.session_state.planilha, index_col=[0], sheet_name="MOVEL"
-            )
+            movel = pd.read_excel("dataframe/movel.xlsx", index_col=[0])
 
             movel.rename(columns={"QTD SERVIÇOS": "QUANTIDADE"}, inplace=True)
             st.session_state.movel = movel[
@@ -28,9 +28,7 @@ def load_session():
             ]
 
             # Ler, filtrar a tratar a planilha das vendas Fixa
-            fixa = pd.read_excel(
-                st.session_state.planilha, index_col=[0], sheet_name="FIXA_E_AVANÇADA"
-            )
+            fixa = pd.read_excel("dataframe/fixa.xlsx", index_col=[0])
 
             # Criar coluna valor acumulado que não existe na planilha fixa, e adequar o nomes
             # das colunas para ficar padronizado.

@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 
+from components.delete_sheet import delete_sheet_button
 from components.export import export_button
 from components.filters import filters
 from components.multipliers import multipliers
@@ -57,11 +58,16 @@ with c1:
 
         build_pdf_file([multipliers_table, informations, statement, signature])
 
-        export_button()
+        b1, b2, b3, b4 = st.columns(4)
+        with b1:
+            export_button()
+
+        with b2:
+            delete_sheet_button()
 
 
 with c2:
-    if "planilha" in st.session_state and "dataframe" in st.session_state:
+    if "dataframe" in st.session_state:
         if "consultor" in st.session_state:
             dataframe = handler_dataframe(st.session_state.consultor)
 

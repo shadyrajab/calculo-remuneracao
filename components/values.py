@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def values():
-    if "planilha" in st.session_state and "dataframe" in st.session_state:
+    if "dataframe" in st.session_state:
         c1, c2, c3 = st.columns(3)
         st.session_state.salario = c1.number_input("Salário do Consultor")
         st.session_state.ajuda = c2.number_input("Ajuda de Custo")
