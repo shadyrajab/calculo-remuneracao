@@ -4,7 +4,7 @@ import streamlit as st
 
 
 def delete_sheet_button():
-    button = st.button("Remover Planilha")
+    button = st.button("Deletar")
 
     if button:
         os.remove("dataframe/fixa.xlsx")

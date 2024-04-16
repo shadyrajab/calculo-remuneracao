@@ -1,12 +1,14 @@
 import pandas as pd
 import streamlit as st
 
+from components.contas import get_account_data
 from components.delete_sheet import delete_sheet_button
 from components.export import export_button
 from components.filters import filters
 from components.multipliers import multipliers
 from components.uploader import file_uploader
 from components.values import values
+from pdfhandler.account import create_account_table
 from pdfhandler.generatepdf import build_pdf_file
 from pdfhandler.information import create_informatons_table
 from pdfhandler.multipliers import create_multipliers_table
@@ -41,9 +43,10 @@ with c1:
         st.dataframe(dfr, hide_index=True)
 
         values()
+        get_account_data()
 
         information_data = get_information_data(
-            856.3,
+            dfr['R TOTAL'][0],
             st.session_state.salario,
             st.session_state.ajuda,
             st.session_state.estorno,
@@ -55,10 +58,15 @@ with c1:
         signature = create_signature_paragraph(st.session_state.consultor)
         statement = create_statement_paragraph()
         informations = create_informatons_table(information_data)
-
-        build_pdf_file([multipliers_table, informations, statement, signature])
-
-        b1, b2, b3, b4 = st.columns(4)
+        account = create_account_table(
+            st.session_state.agencia,
+            st.session_state.conta,
+            st.session_state.tipo_conta,
+        )
+        build_pdf_file(
+            [multipliers_table, informations, account, statement, signature]
+        )
+        b1, b2, b3, b4, b5, b6 = st.columns(6)
         with b1:
             export_button()
 
