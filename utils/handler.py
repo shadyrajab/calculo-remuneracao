@@ -8,7 +8,10 @@ from utils.variables import JA_CLIENTE, MIGRACAO_PRE_POS, NOVOS, PORTABILIDADE
 
 
 def format_value(value):
-    return float(re.sub(r"[^0-9.]", "", str(value)))
+    formated_value = re.sub(r"[^0-9.]", "", str(value))
+    if not formated_value:
+        return 0
+    return formated_value
 
 
 def handler_dataframe(consultor: str):
