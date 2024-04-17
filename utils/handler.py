@@ -29,7 +29,7 @@ def handler_dataframe(consultor: str):
         dataframe["R$ ACUMULADO"] = dataframe["R$ ACUMULADO"].astype(float)
 
         faixa = dataframe["R$ ACUMULADO"].sum()
-        filtro = get_filtro(faixa)
+        filtro = get_filtro(faixa, st.session_state.tipo_multiplicador)
 
         st.session_state.faixa = faixa
         st.session_state.filtro = filtro

@@ -1,26 +1,58 @@
 import pandas as pd
 
 
-def get_filtro(faixa):
-    if faixa <= 1000:
-        filtro = "FILTRO 1"
+def get_filtro(faixa, tipo):
+    if tipo == "Efetivo":
+        if faixa <= 1000:
+            return "FILTRO 1"
+        elif faixa <= 1200:
+            return "FILTRO 2"
+        elif faixa <= 1500:
+            return "FILTRO 3"
+        elif faixa <= 1800:
+            return "FILTRO 4"
+        else:
+            return "FILTRO 5"
+    elif tipo == "Estágio":
+        if faixa <= 600:
+            return "FILTRO 0"
+        elif faixa <= 701:
+            return "FILTRO 1"
+        elif faixa <= 1001:
+            return "FILTRO 2"
+        elif faixa <= 1301:
+            return "FILTRO 3"
+        elif faixa <= 1601:
+            return "FILTRO 4"
+        elif faixa <= 1901:
+            return "FILTRO 5"
+        else:
+            return "FILTRO 6"
 
-    if faixa >= 1001 and faixa <= 1200:
-        filtro = "FILTRO 2"
+    
+    if tipo == "Estágio":
+        if faixa <= 600:
+            filtro = "FILTRO 0"
+        
+        if faixa >= 601 and faixa <= 701:
+            filtro = "FILTRO 1"
 
-    if faixa >= 1201 and faixa <= 1500:
-        filtro = "FILTRO 3"
+        if faixa >= 702 and faixa <= 1001:
+            filtro = "FILTRO 2"
 
-    if faixa >= 1501 and faixa <= 1800:
-        filtro = "FILTRO 4"
+        if faixa >= 1002 and faixa <= 1301:
+            filtro = "FILTRO 3"
 
-    if faixa >= 1801 and faixa <= 2100:
-        filtro = "FILTRO 5"
+        if faixa >= 1302 and faixa <= 1601:
+            filtro = "FILTRO 3"
 
-    if faixa >= 2100:
-        filtro = "FILTRO 6"
+        if faixa >= 1602 and faixa <= 1901:
+            filtro = "FILTRO 5"
 
-    return filtro
+        if faixa >= 1902:
+            filtro = "FILTRO 6" 
+
+        return filtro
 
 
 def get_information_data(bonus: float, salario: float, ajuda: float, estorno: float):

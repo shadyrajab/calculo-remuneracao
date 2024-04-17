@@ -4,7 +4,10 @@ import streamlit as st
 def multipliers():
     if "dataframe" in st.session_state:
         st.markdown("##### Multiplicadores:")
-
+        st.session_state.tipo_multiplicador = st.selectbox(
+            "Tipo de Multiplicador",
+            options=["Efetivo", "Estágio"]
+        )
         c1, c2, c3, c4, c5, c6 = st.columns(6)
         st.session_state.xnovos = c1.number_input("Novos", step=0.1)
         st.session_state.xportabilidade = c2.number_input("Portabilidade", step=0.1)
