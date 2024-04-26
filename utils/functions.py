@@ -55,21 +55,14 @@ def get_filtro(faixa, tipo):
         return filtro
 
 
-def get_information_data(bonus: float, salario: float, ajuda: float, estorno: float):
+def get_information_data(bonus: float, salario: float, ajuda: float, estorno: float, faixa: float):
     total = salario + ajuda + bonus
     return [
-        ["", "", "BÔNUS", "", ""],
-        ["", "", f"R$ {bonus}", "", ""],
-        ["", "", "", "", ""],
-        ["", "", "SALÁRIO", "", ""],
-        ["", "", f"R$ {salario}", "", ""],
-        ["", "", "Ajuda de Custo", "", ""],
-        ["", "", f"R$ {ajuda}", "", ""],
-        ["", "", "", "", ""],
-        ["", "", "Estorno", "", ""],
-        ["", "", f"R$ {estorno}", "", ""],
-        ["", "", "Valor a depositar", "", ""],
-        ["", "", f"R$ {total}", "", ""],
+        ["TOTAL", "Ajuda de Custo", "BÔNUS", "SALÁRIO"],
+        [f"R$ {faixa}", f"R$ {ajuda}", f"R$ {bonus}", f"R$ {salario}"],
+        ["", "", "", ""],
+        ["", "Valor a depositar", "Estorno", ""],
+        ["", f"R$ {total}", f"R$ {estorno}", ""]
     ]
 
 

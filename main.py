@@ -50,6 +50,7 @@ with c1:
             st.session_state.salario,
             st.session_state.ajuda,
             st.session_state.estorno,
+            dfr['FAIXA'][0]
         )
 
         multipliers_data = get_multipliers_data(dfr)
