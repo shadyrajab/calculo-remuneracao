@@ -14,8 +14,8 @@ def get_multiplier(filtro):
             "PORTABILIDADE": 0.0,
             "NOVOS": 0.0,
             "ALTAS": 0.0,
-            "FIXA": 0.6,
-            "AVANÇADA": 0.7
+            "FIXA": 0.0,
+            "AVANÇADA": 0.0
         },
         "FILTRO 2": {
             "PORTABILIDADE": 0.5,
