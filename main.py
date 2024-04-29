@@ -6,6 +6,7 @@ from components.delete_sheet import delete_sheet_button
 from components.export import export_button
 from components.filters import filters
 from components.multipliers import multipliers
+from components.tipo_multiplicador import tipo_multiplicador
 from components.uploader import file_uploader
 from components.values import values
 from pdfhandler.account import create_account_table
@@ -25,15 +26,14 @@ file_uploader()
 
 load_session()
 filters()
-
+st.markdown("##### Multiplicadores:")
+tipo_multiplicador()
 c1, c2 = st.columns(2)
 
 with c1:
-    multipliers()
-
     if "consultor" in st.session_state:
         dataframe = handler_dataframe(st.session_state.consultor)
-
+        multipliers()
         handler_receita(dataframe)
         remuneracoes = handler_remuneracoes(
             st.session_state.consultor, st.session_state.faixa, st.session_state.filtro
@@ -46,11 +46,11 @@ with c1:
         get_account_data()
 
         information_data = get_information_data(
-            dfr['R TOTAL'][0],
+            dfr["R TOTAL"][0],
             st.session_state.salario,
             st.session_state.ajuda,
             st.session_state.estorno,
-            dfr['FAIXA'][0]
+            dfr["FAIXA"][0],
         )
 
         multipliers_data = get_multipliers_data(dfr)
@@ -64,9 +64,7 @@ with c1:
             st.session_state.conta,
             st.session_state.tipo_conta,
         )
-        build_pdf_file(
-            [multipliers_table, informations, account, statement, signature]
-        )
+        build_pdf_file([multipliers_table, informations, account, statement, signature])
         b1, b2, b3, b4, b5, b6 = st.columns(6)
         with b1:
             export_button()
