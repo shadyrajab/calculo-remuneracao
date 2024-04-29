@@ -92,10 +92,10 @@ def get_information_data(bonus: float, salario: float, ajuda: float, estorno: fl
     total = salario + ajuda + bonus
     return [
         ["TOTAL", "Ajuda de Custo", "BÔNUS", "SALÁRIO"],
-        [f"R$ {faixa}", f"R$ {ajuda}", f"R$ {bonus}", f"R$ {salario}"],
+        [f"R$ {faixa:.1f}", f"R$ {ajuda:.1f}", f"R$ {bonus:.1f}", f"R$ {salario:.1f}"],
         ["", "", "", ""],
         ["", "Valor a depositar", "Estorno", ""],
-        ["", f"R$ {total}", f"R$ {estorno}", ""]
+        ["", f"R$ {total:.1f}", f"R$ {estorno:.1f}", ""]
     ]
 
 
